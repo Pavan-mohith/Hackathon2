@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Hours Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+        .header {
+            background-color: #2f4f7f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .card-table th, .card-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .card-table th {
+            background-color: #f0f0f0;
+        }
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .back-button {
+            background-color: #95a5a6;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        Office Hours Management
+    </div>
+
+    <!-- Display Office Hours -->
+    <div class="card">
+        <h2 class="text-xl font-bold">Current Office Hours</h2>
+        <table class="card-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for office_hour in office_hours %}
+                    <tr>
+                        <td>{{ office_hour.day_of_week }}</td>
+                        <td>{{ office_hour.start_time }}</td>
+                        <td>{{ office_hour.end_time }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No office hours available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add New Office Hour Form -->
+    <div class="card">
+        <h2 class="text-xl font-bold">Add New Office Hour</h2>
+        <form method="POST" action="{% url 'add_office_hour' %}">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="day_of_week" class="block text-lg">Day of the Week:</label>
+                <select name="day_of_week" id="day_of_week" class="border p-2 w-full mt-2">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="start_time" class="block text-lg">Start Time:</label>
+                <input type="time" name="start_time" id="start_time" class="border p-2 w-full mt-2">
+            </div>
+            <div class="mb-4">
+                <label for="end_time" class="block text-lg">End Time:</label>
+                <input type="time" name="end_time" id="end_time" class="border p-2 w-full mt-2">
+            </div>
+            <button type="submit" class="button">Add Office Hour</button>
+        </form>
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.location.href='{% url 'faculty_view' %}'">Back to Faculty Page</button>
+
+</div>
+
+</body>
+</html>

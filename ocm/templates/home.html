@@ -1,0 +1,119 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - OSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f4f7f6; /* Light background color */
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50; /* Dark sidebar color */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar-logo {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar-menu {
+            width: 100%;
+            text-align: left;
+        }
+        .sidebar-menu a {
+            color: #ecf0f1; /* Light text color */
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .sidebar-menu a:hover {
+            background-color: #34495e; /* Slightly darker on hover */
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #ffffff; /* White card background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-blue-800 text-white p-3 flex justify-between items-center shadow-md">
+        <div class="flex items-center">
+            <img alt="University Logo" class="h-8" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Hh5RPsKhtBPsWCFSiEKnUJ6x/user-8qgiVpCV0U0b7zDjfFInHgjl/img-L9MQbtTwDsk6Br59UmksVnPL.png" width="40"/>
+            <h1 class="ml-2 text-lg font-bold">Student Portal - <span class="text-white">OSM</span></h1>
+        </div>
+        <div class="flex items-center">
+            <img src="{% static 'anya.png' %}" alt="Anya Image" class="h-8 ml-2"> <!-- Added anya.png image -->
+            <a class="ml-2 text-white text-sm" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="{% static 'ocm.png' %}" alt="Image" class="bottom-image">
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li class="py-1"><a class="flex items-center" href="{% url 'courses' %}"><i class="fas fa-video mr-1"></i> Courses</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'MaterialsView' %}"><i class="fas fa-book mr-1"></i> Study Materials</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'schedule' %}"><i class="fas fa-clock mr-1"></i> Study Schedule</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'assignments' %}"><i class="fas fa-file-alt mr-1"></i> Assignments</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'quiz' %}"><i class="fas fa-question-circle mr-1"></i> Quizzes</a></li> <!-- Added Quizzes -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2 class="text-lg font-bold mb-2">Welcome, <span class="font-normal">{{ user.username }}</span></h2> <!-- Username displayed here -->
+        <div class="grid grid-cols-3 gap-4">
+            <div class="card">
+                <div class="bg-blue-600 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                    <i class="fas fa-play-circle text-2xl text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Total Courses</h3>
+                <p class="text-lg font-bold">{{ total_courses }}</p>
+            </div>
+            <div class="card">
+                <div class="bg-blue-600 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                    <i class="fas fa-book text-2xl text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Total Study Materials</h3>
+                <p class="text-lg font-bold">{{ total_study_materials }}</p>
+            </div>
+            <div class="card">
+                <a href="#" class="block text-center">
+                    <div class="bg-green-600 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Buy Courses</h3>
+                    <p class="text-lg font-bold">{{ buy_courses }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

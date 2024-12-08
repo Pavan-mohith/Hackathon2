@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Course Notes - Computer Science</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+        .header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header .menu-icon, .header .search-icon {
+            font-size: 24px;
+        }
+        .back-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 20px;
+        }
+        .back-button:hover {
+            background-color: #1d4ed8;
+        }
+        .content {
+            padding: 20px;
+        }
+        .course-notes {
+            background-color: #f3f4f6;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .course-notes h2 {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .course-notes p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="flex items-center">
+            <i class="fas fa-bars menu-icon"></i>
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-share-alt mr-4"></i>
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Computer Science Section -->
+        <div class="course-notes">
+            <h2>Detailed Notes</h2>
+            <p><strong>Introduction:</strong> Computer Science is the study of computers and computational systems. It involves understanding both the theoretical and practical aspects of computing, including algorithms, programming, and data processing.</p>
+
+            <p><strong>Key Topics:</strong> The field of computer science covers a wide range of topics, including software engineering, data structures, algorithms, artificial intelligence, machine learning, and computer networks. Below are some of the main subjects covered in a typical computer science curriculum.</p>
+
+            <p><strong>Software Engineering:</strong> Software engineering is the application of engineering principles to software development. It involves designing, building, testing, and maintaining software systems. It is crucial for developing high-quality software that meets user needs and is scalable, efficient, and secure.</p>
+
+            <p><strong>Data Structures:</strong> Data structures are ways of organizing and storing data so that it can be accessed and modified efficiently. Examples include arrays, linked lists, stacks, queues, and trees. Data structures are a fundamental part of computer science and are used in almost all areas of computing.</p>
+
+            <p><strong>Algorithms:</strong> An algorithm is a step-by-step procedure or formula for solving a problem. Algorithms are at the heart of computer science and play a critical role in processing data efficiently. They help determine the most efficient way to search, sort, and manipulate data.</p>
+
+            <p><strong>Artificial Intelligence (AI):</strong> AI is a subfield of computer science that focuses on creating systems capable of performing tasks that would normally require human intelligence. This includes tasks such as learning, reasoning, problem-solving, and decision-making. AI is used in areas like robotics, natural language processing, and machine vision.</p>
+
+            <p><strong>Machine Learning (ML):</strong> ML is a subset of AI that focuses on algorithms that allow computers to learn from data and improve over time. Machine learning is widely used in fields such as data analysis, predictive analytics, and autonomous vehicles.</p>
+
+            <p><strong>Computer Networks:</strong> Computer networks involve connecting computers to share data and resources. This includes understanding the structure, protocols, and technologies that make up a network, such as TCP/IP, DNS, and HTTP. Networking is essential for communication between computers and the internet.</p>
+
+            <p><strong>Conclusion:</strong> Computer Science is a dynamic and constantly evolving field. As technology continues to advance, new areas of study emerge, such as quantum computing, blockchain, and cybersecurity. Understanding the core principles of computer science is essential for anyone looking to work in the tech industry.</p>
+        </div>
+
+        <!-- You can duplicate the block above for other subjects -->
+    </div>
+</body>
+</html>

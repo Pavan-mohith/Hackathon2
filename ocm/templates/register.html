@@ -1,0 +1,96 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #667eea, #764ba2); /* Gradient background */
+        }
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05); /* Zoom effect */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+        .header {
+            background: linear-gradient(to right, #4f93e6, #3778c2); /* Cool gradient for header */
+        }
+        .btn-primary {
+            background-color: #4f93e6;
+            border-radius: 9999px; /* Rounded button */
+            transition: background-color 0.3s ease-in-out;
+            padding: 0.25rem 0.75rem; /* Smaller button size */
+            font-size: 0.75rem; /* Smaller text size */
+        }
+        .btn-primary:hover {
+            background-color: #3778c2; /* Darker on hover */
+        }
+        .input-box {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-sm">
+        <form class="card bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="mb-4">
+                <div class="header text-white text-center py-3 rounded-t-lg">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="ml-2 text-lg font-bold">Register</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    <i class="fas fa-id-card"></i>
+                    <span class="ml-2">Username</span>
+                </label>
+                {{ form.username }}
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    <i class="fas fa-envelope"></i>
+                    <span class="ml-2">Email</span>
+                </label>
+                <input type="email" id="email" name="email" class="input-box" placeholder="Email">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password1">
+                    <i class="fas fa-key"></i>
+                    <span class="ml-2">Password</span>
+                </label>
+                <input type="password" id="password1" name="password1" class="input-box" placeholder="Password">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password2">
+                    <i class="fas fa-key"></i>
+                    <span class="ml-2">Confirm Password</span>
+                </label>
+                <input type="password" id="password2" name="password2" class="input-box" placeholder="Confirm Password">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="btn-primary text-white font-bold" type="submit">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="ml-1">REGISTER</span>
+                </button>
+                <a href="{% url 'home' %}" class="btn-primary text-white font-bold">
+                    <i class="fas fa-home"></i>
+                    <span class="ml-1"> HOME</span>
+                </a>
+            </div>
+            <div class="mt-4 text-center">
+                <p class="text-gray-700 text-sm font-bold">Already have an account? <a href="{% url 'login' %}" class="text-blue-500 hover:text-blue-800">Login</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

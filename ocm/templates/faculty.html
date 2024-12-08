@@ -1,0 +1,143 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Portal - OSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #2f4f7f; /* Dark blue color */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar-logo {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar-menu {
+            width: 100%;
+            text-align: left;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .card-icon i {
+            font-size: 24px;
+            color: #fff;
+        }
+        .card-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gray-800 text-white p-2 flex justify-between items-center">
+        <div class="flex items-center">
+            <img alt="University Logo" class="h-8" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Hh5RPsKhtBPsWCFSiEKnUJ6x/user-8qgiVpCV0U0b7zDjfFInHgjl/img-L9MQbtTwDsk6Br59UmksVnPL.png" width="40"/>
+            <h1 class="ml-2 text-lg font-bold">Faculty Portal - <span class="text-white">OSM</span></h1>
+        </div>
+        <div class="flex items-center">
+            <img src="{% static 'anya.png' %}" alt="Anya Image" class="h-8 ml-2">
+            <a class="ml-2 text-white text-sm" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="{% static 'ocm.png' %}" alt="Image" class="bottom-image">
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li class="py-1"><a class="flex items-center" href="{% url 'add_student' %}"><i class="fas fa-users mr-1"></i> Students</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'MaterialsView2' %}"><i class="fas fa-book mr-1"></i> Course Materials</a></li>
+                <li class="py-1"><a class="flex items-center" href="{% url 'office_hours' %}"><i class="fas fa-clock mr-1"></i> Office Hours</a></li>
+                <li class="py-1"><a class="flex items-center" href=""><i class="fas fa-clipboard-list mr-1"></i> Attendance</a></li>
+                <li class="py-1"><a class="flex items-center" href=""><i class="fas fa-certificate mr-1"></i> Grades</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2 class="text-lg font-bold mb-2">Welcome, <span class="font-normal">{{ user.username }}</span></h2> <!-- Username displayed here -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-users text-3xl text-white"></i>
+                </div>
+                <div class="card-content">
+                    <p class="text-lg font-bold">Students: {{ students }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-book text-3xl text-white"></i>
+                </div>
+                <div class="card-content">
+                    <p class="text-lg font-bold">Course Materials: {{ course_materials }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clock text-3xl text-white"></i>
+                </div>
+                <div class="card-content">
+                    <p class="text-lg font-bold">Office Hours: {{ office_hours }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-list text-3xl text-white"></i>
+                </div>
+                <div class="card-content">
+                    <p class="text-lg font-bold">Attendance: {{ attendance }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-certificate text-3xl text-white"></i>
+                </div>
+                <div class="card-content">
+                    <p class="text-lg font-bold">Grades: {{ grades }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

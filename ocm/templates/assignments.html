@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Assignments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #ffffff; /* White background */
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(0, 0, 0, 0.1); /* Semi-transparent background for light theme */
+            backdrop-filter: blur(10px); /* Glass effect */
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-gradient {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5, #00d2ff);
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 12px 36px;
+            transition: all 0.4s ease;
+        }
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        .hero-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .input {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: black;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        .input:focus {
+            border-color: #3a7bd5;
+            outline: none;
+            box-shadow: 0 0 5px #3a7bd5;
+        }
+        .hover-bg:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Main Container -->
+    <div class="container mx-auto py-10">
+        <!-- Back Button -->
+        <div class="mt-6 mb-10">
+            <a href="{% url 'home_view' %}" class="btn-gradient hover:bg-indigo-600">
+                Back to Home
+            </a>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="glass text-black text-center py-12 mb-10">
+            <h1 class="hero-text">Manage Your Assignments</h1>
+            <p class="mt-4 text-lg">Stay organized and never miss a deadline!</p>
+        </div>
+
+        <!-- Add Assignment Title -->
+        <h2 class="text-3xl font-semibold text-center text-black mb-6">Add New Assignment</h2>
+
+        <!-- Add Assignment Form -->
+        <div class="max-w-2xl mx-auto card">
+            <form method="POST" action="{% url 'add_assignment' %}">
+                {% csrf_token %}
+                <div class="mb-6">
+                    <label for="title" class="text-lg text-black">Title</label>
+                    <input type="text" id="title" name="title" required class="input w-full" placeholder="Enter assignment title">
+                </div>
+                <div class="mb-6">
+                    <label for="description" class="text-lg text-black">Description</label>
+                    <textarea id="description" name="description" required class="input w-full" placeholder="Enter assignment description"></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="due_date" class="text-lg text-black">Due Date</label>
+                    <input type="date" id="due_date" name="due_date" required class="input w-full">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-gradient">
+                        Add Assignment
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Existing Assignments Section -->
+        <h2 class="text-2xl font-semibold text-center text-black mt-12 mb-6">Existing Assignments</h2>
+        <div class="max-w-2xl mx-auto card p-8">
+            {% if assignments %}
+                <ul class="space-y-4">
+                    {% for assignment in assignments %}
+                        <li class="flex justify-between items-center hover-bg p-4 mb-4 rounded-lg transition">
+                            <div>
+                                <h3 class="text-xl font-semibold text-black">{{ assignment.title }}</h3>
+                                <p class="text-gray-600">{{ assignment.description }}</p>
+                                <p class="text-gray-500">Due: {{ assignment.due_date }}</p>
+                            </div>
+                            <form method="POST" action="{% url 'remove_assignment' assignment.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-500 hover:text-red-700 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    Delete
+                                </button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-600 text-center">No assignments found.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

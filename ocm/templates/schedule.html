@@ -1,0 +1,105 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f4f7f6; /* Light background color */
+        }
+        .sidebar {
+            display: none; /* Hides sidebar in schedule page */
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .schedule-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .schedule-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .schedule-table tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-blue-800 text-white p-3 flex justify-between items-center shadow-md">
+        <div class="flex items-center">
+            <h1 class="ml-2 text-lg font-bold">Student Portal - <span class="text-white">OSM</span></h1>
+        </div>
+    </header>
+
+    <!-- Back button placed at the top -->
+    <div class="p-4">
+        <a href="{% url 'home_view' %}" class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition duration-300 inline-block">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <div class="main-content">
+        <h2 class="text-lg font-bold mb-4">Your Study Schedule</h2>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td>10:00 AM - 12:00 PM</td>
+                    <td>AI & ML</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>2:00 PM - 4:00 PM</td>
+                    <td>Data Structures</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>9:00 AM - 11:00 AM</td>
+                    <td>Database Management</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>1:00 PM - 3:00 PM</td>
+                    <td>Operating Systems</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>11:00 AM - 1:00 PM</td>
+                    <td>Computer Networks</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>3:00 PM - 5:00 PM</td>
+                    <td>Software Engineering</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>4:00 PM - 6:00 PM</td>
+                    <td>Cyber Security</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
